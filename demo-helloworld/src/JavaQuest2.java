@@ -21,14 +21,15 @@ public class JavaQuest2 {
     }
 
     String str = "I love Java. I love coding";
-    if () {
+    if (str.length() == 27) {
+
       System.out.println("str length=27");
-    } else if () { // code here ... add the condition
+    } else if (str.length() < 27) { // code here ... add the condition
       System.out.println("str length < 27");
-    } else if () { // code here ... complete the code
+    } else if (str.length() > 27) { // code here ... complete the code
       System.out.println("str length > 27");
     }
-  }
+  
 
 
 

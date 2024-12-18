@@ -25,14 +25,14 @@ public class Exercise20241210 {
 
 
     // byte-> short -> int -> long
-    byte maxByte = 127;
+    //byte maxByte = 127;
 
     // int value -> byte
-    maxByte = maxByte - 1; // Java: is it safe? Not safe
+    //maxByte = maxByte - 1; // Java: is it safe? Not safe
     //byte value + int value -> int value
     // can we assign int value to byte variable?(downcasting)
 
-    int x = maxByte;//Java： is it safe? it is safe
+    //int x = maxByte;//Java： is it safe? it is safe
 
 
     //! Java: (1) Compile time + (2) Run time
