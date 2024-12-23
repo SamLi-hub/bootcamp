@@ -25,8 +25,9 @@ public String getProductNumber(){
 }
 
 // Setter (amend something)
-// public void setAge(int age){
-// this.age = age;
+public void setOrderNumber(String orderNumber){
+this.orderNumber = orderNumber;
+}
 
 
 
@@ -41,6 +42,10 @@ Order[] orders = new Order[] {o1, o2, o3};
 for (Order o: orders){
 System.out.println(o.getOrderNumber() + "," + o.getOrderQty() + "," + o.getProductNumber());
 }
+
+o3.setOrderNumber("B333");
+System.out.println(o3.getOrderNumber());
+System.out.println(o3.getOrderNumber() + "," + o3.getOrderQty() + "," + o3.getProductNumber());
 
 
 }
