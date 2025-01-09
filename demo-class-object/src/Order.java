@@ -1,52 +1,57 @@
+import java.math.BigDecimal;
+
 public class Order {
-// attributes
-private String orderNumber;
-private int orderQty;
-private String productNumber;
+  private long id;
+  private Item[] items; // address/ reference -> item[] array
 
-// Constructor (not Method)
-public Order(String orderNumber, int orderQty, String productNumber){
-this.orderNumber = orderNumber;
-this.orderQty = orderQty;
-this.productNumber = productNumber;
-}
+  public Order(long id) {
+    this.id = id;
+    this.items = new Item[0];
+  }
 
-// Getter (instance Method)
-public String getOrderNumber(){
-  return this.orderNumber;
-}
+  public void addItem(Item item) {
+    Item[] newArr = new Item[this.items.length + 1];
+    for (int i = 0; i < this.items.length; i++) {
+      newArr[i] = this.items[i];
+    }
+    newArr[newArr.length - 1] = item;
+    this.items = newArr;
+  }
 
-public int getOrderQty(){
-  return this.orderQty;
-}
+  public void removeItem(Item item) {
+    // resize array - 1
+    // this.items -> Item array object
+    // this.items[i] -> Item Object
+    Item[] newArr = new Item[this.items.length - 1];
+    int idx = 0;
+    int countTarget = 0;
+    for (int i = 0; i < this.items.length; i++) {
+      if (this.items[i].equals(item) && countTarget == 0) { // TBC.
+        countTarget++;
+        continue;
+      }
+      newArr[idx++] = this.items[i]; // copy
+    }
+    this.items = newArr;
+  }
 
-public String getProductNumber(){
-  return this.productNumber;
-}
+  public Item[] getItems() {
+    return this.items;
+  }
 
-// Setter (amend something)
-public void setOrderNumber(String orderNumber){
-this.orderNumber = orderNumber;
-}
+  public long getId() {
+    return this.id;
+  }
 
-
-
-
-public static void main(String[] args) {
-Order o1 = new Order("A001" , 15, "apple");
-Order o2 = new Order("A002", 20, "cherry");
-Order o3 = new Order("A003", 25, "mango");
-
-
-Order[] orders = new Order[] {o1, o2, o3};
-for (Order o: orders){
-System.out.println(o.getOrderNumber() + "," + o.getOrderQty() + "," + o.getProductNumber());
-}
-
-o3.setOrderNumber("B333");
-System.out.println(o3.getOrderNumber());
-System.out.println(o3.getOrderNumber() + "," + o3.getOrderQty() + "," + o3.getProductNumber());
-
-
-}
+  // Order order = new Order(items);
+  // order.totalAmount();
+  public double totalAmount() {
+    // 0.0 + 10.3 (new BigDecimal Object) -> 10.3 (new BigDecimal Object)
+    // 10.3 + 7.7 (new BigDecimal Object) -> 18.0 (new BigDecimal Object)
+    BigDecimal total = BigDecimal.valueOf(0.0);
+    for (Item item : items) {
+      total = total.add(BigDecimal.valueOf(item.totalAmount()));
+    }
+    return total.doubleValue();
+  }
 }
